@@ -8,6 +8,13 @@
     4. 반드시 자식 테이블을 먼저 지우고, 부모 테이블은 나중에 지워야 한다.
 */
 
+
+/*
+    삭제 옵션
+    1. ON DELETE CASCADE  : 외래키가 참조하는 기본키 값이 삭제되면 외래키도 함께 삭제한다.
+    2. ON DELETE SET NULL : 외래키가 참조하는 기본키 값이 삭제되면 외래키를 NULL로 처리한다.
+
+*/
 --자식 먼저 지우기
 DROP TABLE STUDENT_T;
 
@@ -29,5 +36,6 @@ CREATE TABLE STUDENT_T (
     SCH_CODE NUMBER             ,
     STU_NAME VARCHAR2(10 BYTE)  NOT NULL,
     CONSTRAINT PK_STU PRIMARY KEY(STU_NO), --제약조건의 이름은 PK_STU 이고 STU_NO에 PRIMARY KEY 지정
-    CONSTRAINT FK_SCH_STU FOREIGN KEY(SCH_CODE) REFERENCES SCHOOL_T(SCH_CODE) --(SCH_CODE)는 SCHOOL_T 테이블의 SCH_CODE를 참조한다.
+    CONSTRAINT FK_SCH_STU FOREIGN KEY(SCH_CODE) REFERENCES SCHOOL_T(SCH_CODE) ON DELETE CASCADE --(SCH_CODE)는 SCHOOL_T 테이블의 SCH_CODE를 참조한다.
+    
 );
